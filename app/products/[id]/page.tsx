@@ -223,7 +223,7 @@ export default async function ProductDetailPage({
           parameter.
         </p>
         <p className="text-sm text-gray-600">
-          Current route: <code className="bg-gray-200 px-1 rounded">/products/{params.id}</code>
+          Current route: <code className="bg-gray-200 px-1 rounded">/products/{id}</code>
         </p>
       </div>
     </div>

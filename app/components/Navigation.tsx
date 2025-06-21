@@ -19,6 +19,7 @@ export default function Navigation() {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   // Helper function to determine if a link is active
   const isActive = (path: string) => {
@@ -28,19 +29,30 @@ export default function Navigation() {
     return pathname.startsWith(path)
   }
 
+  // Initialize client-side state to prevent hydration mismatch
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false)
   }, [pathname])
 
-  // Add scroll effect for navbar
+  // Add scroll effect for navbar - only run on client side
   useEffect(() => {
+    if (!isClient) return
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
     }
+    
+    // Set initial scroll state
+    setIsScrolled(window.scrollY > 10)
+    
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isClient])
 
   const navLinks = [
     { href: "/", label: "Home", icon: Home },
