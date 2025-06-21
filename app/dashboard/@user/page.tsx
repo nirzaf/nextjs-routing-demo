@@ -17,7 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { User, Mail, MapPin, Calendar, Settings, Bell, Shield } from "lucide-react"
-import { mockUser } from "@/lib/data"
+import { mockUsers } from "@/lib/data"
 
 // Simulate async user data fetching
 async function getUserData() {
@@ -25,7 +25,7 @@ async function getUserData() {
   await new Promise(resolve => setTimeout(resolve, 800))
   
   return {
-    ...mockUser,
+    ...mockUsers[0], // Use first user from the array
     lastLogin: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
     accountStatus: "Premium",
     notifications: 3,
@@ -67,7 +67,7 @@ export default async function UserPage() {
               <Avatar className="h-16 w-16">
                 <AvatarImage src="/placeholder.svg" alt={userData.name} />
                 <AvatarFallback className="text-lg">
-                  {userData.name.split(' ').map(n => n[0]).join('')}
+                  {userData.name?.split(' ').map(n => n[0]).join('') || 'U'}
                 </AvatarFallback>
               </Avatar>
               <div className="space-y-1">
