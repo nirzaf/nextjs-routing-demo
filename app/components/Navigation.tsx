@@ -13,7 +13,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ShoppingCart, User, Home, Package, Menu, X } from "lucide-react"
+import { ShoppingCart, User, Home, Package, Menu, X, BookOpen } from "lucide-react"
 
 export default function Navigation() {
   const pathname = usePathname()
@@ -45,6 +45,7 @@ export default function Navigation() {
   const navLinks = [
     { href: "/", label: "Home", icon: Home },
     { href: "/products", label: "Products", icon: Package },
+    { href: "/docs/props-reducers", label: "Docs", icon: BookOpen },
     { href: "/about", label: "About", icon: null },
     { href: "/contact", label: "Contact", icon: null },
   ]
@@ -77,7 +78,7 @@ export default function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x 2">
+          <div className="hidden md:flex space-x-2">
             {navLinks.map(({ href, label, icon: Icon }) => (
               <Link
                 key={href}

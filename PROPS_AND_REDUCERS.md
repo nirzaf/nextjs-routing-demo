@@ -19,6 +19,7 @@ app/examples/
 ### 1. Props Patterns (`PropsExamples.tsx`)
 
 #### Basic Props
+
 ```typescript
 interface BasicProps {
   title: string
@@ -37,6 +38,7 @@ function BasicComponent(props: BasicProps) {
 ```
 
 #### Destructured Props
+
 ```typescript
 function DestructuredComponent({ name, age, email }: DestructuredProps) {
   return (
@@ -50,6 +52,7 @@ function DestructuredComponent({ name, age, email }: DestructuredProps) {
 ```
 
 #### Optional Props with Defaults
+
 ```typescript
 interface OptionalProps {
   title: string
@@ -69,6 +72,7 @@ function OptionalComponent({
 ```
 
 #### Children Props
+
 ```typescript
 interface ChildrenProps {
   title: string
@@ -86,6 +90,7 @@ function ContainerComponent({ title, children }: ChildrenProps) {
 ```
 
 #### Function Props (Callbacks)
+
 ```typescript
 interface FunctionProps {
   label: string
@@ -106,6 +111,7 @@ function ButtonComponent({ label, onClick, onHover }: FunctionProps) {
 ```
 
 #### Object and Array Props
+
 ```typescript
 interface User {
   id: number
@@ -121,6 +127,7 @@ interface ComplexProps {
 ```
 
 #### Render Props Pattern
+
 ```typescript
 interface RenderProps {
   data: any[]
@@ -136,6 +143,7 @@ function RenderPropsComponent({ data, loading, render }: RenderProps) {
 ### 2. useReducer Patterns (`ReducerExamples.tsx`)
 
 #### Simple Counter with History
+
 ```typescript
 type CounterAction = 
   | { type: 'INCREMENT' }
@@ -177,6 +185,7 @@ const counterReducer = (state: CounterState, action: CounterAction): CounterStat
 ```
 
 #### Form State Management
+
 ```typescript
 type FormAction = 
   | { type: 'SET_FIELD'; field: string; value: string }
@@ -210,6 +219,7 @@ const formReducer = (state: FormState, action: FormAction): FormState => {
 ```
 
 #### Todo List with CRUD Operations
+
 ```typescript
 interface Todo {
   id: number
@@ -236,6 +246,7 @@ interface TodoState {
 ### 3. Context + useReducer (`ContextReducerExample.tsx`)
 
 #### Global State Setup
+
 ```typescript
 // 1. Define State and Actions
 interface AppState {
@@ -301,6 +312,7 @@ export function useAuth() {
 ### 4. Real-World Example: Shopping Cart (`ShoppingCartExample.tsx`)
 
 #### Features Implemented
+
 - ✅ Add/remove items
 - ✅ Update quantities
 - ✅ Apply coupon codes
@@ -312,6 +324,7 @@ export function useAuth() {
 - ✅ Optimistic updates
 
 #### Cart State Structure
+
 ```typescript
 interface CartItem {
   id: string
@@ -341,6 +354,7 @@ type CartAction =
 ```
 
 #### Derived State Calculations
+
 ```typescript
 function useCartCalculations(state: CartState) {
   const subtotal = state.items.reduce((total, item) => {
@@ -366,6 +380,7 @@ function useCartCalculations(state: CartState) {
 ## 🚀 How to Test
 
 1. **Navigate to Examples Page**:
+
    ```
    http://localhost:3001/examples
    ```
@@ -382,7 +397,7 @@ function useCartCalculations(state: CartState) {
 
 4. **Test Context + Reducer**:
    - Click the "Context + Reducer" tab
-   - Login with different emails (try admin@example.com)
+   - Login with different emails (try <admin@example.com>)
    - Add notifications and manage cart
 
 5. **Test Shopping Cart**:
@@ -395,20 +410,23 @@ function useCartCalculations(state: CartState) {
 
 ### When to Use Props vs useReducer vs Context
 
-#### Use Props When:
+#### Use Props When
+
 - ✅ Passing data down one or two levels
 - ✅ Simple, independent values
 - ✅ Component-specific data
 - ✅ Event handlers and callbacks
 
-#### Use useReducer When:
+#### Use useReducer When
+
 - ✅ Complex state logic with multiple sub-values
 - ✅ State transitions depend on previous state
 - ✅ Multiple actions can update the same state
 - ✅ Need predictable state updates
 - ✅ State logic benefits from testing
 
-#### Use Context + useReducer When:
+#### Use Context + useReducer When
+
 - ✅ Global application state
 - ✅ State needed by many components
 - ✅ Avoiding prop drilling
@@ -419,6 +437,7 @@ function useCartCalculations(state: CartState) {
 ### Best Practices
 
 #### Props
+
 1. **Use TypeScript interfaces** for type safety
 2. **Destructure props** for cleaner code
 3. **Provide default values** for optional props
@@ -426,6 +445,7 @@ function useCartCalculations(state: CartState) {
 5. **Keep props focused** - single responsibility
 
 #### useReducer
+
 1. **Use discriminated unions** for action types
 2. **Keep reducers pure** - no side effects
 3. **Use immutable updates** with spread operator
@@ -433,6 +453,7 @@ function useCartCalculations(state: CartState) {
 5. **Add TypeScript** for action and state types
 
 #### Context + useReducer
+
 1. **Create custom hooks** for easier consumption
 2. **Split contexts** by domain (auth, cart, etc.)
 3. **Provide error boundaries** for context errors
@@ -442,16 +463,19 @@ function useCartCalculations(state: CartState) {
 ## 🔧 Performance Considerations
 
 ### Props
+
 - Use `React.memo` for expensive components
 - Avoid creating objects/functions in render
 - Use `useCallback` and `useMemo` when needed
 
 ### useReducer
+
 - Reducers are called on every dispatch
 - Use `React.memo` to prevent unnecessary re-renders
 - Consider splitting large reducers
 
 ### Context
+
 - Context triggers re-renders for all consumers
 - Split contexts to minimize re-renders
 - Use `useMemo` for context values
@@ -460,6 +484,7 @@ function useCartCalculations(state: CartState) {
 ## 🎨 UI Components Used
 
 The examples use shadcn/ui components:
+
 - `Button` - Interactive buttons
 - `Input` - Form inputs
 - `Card` - Content containers
