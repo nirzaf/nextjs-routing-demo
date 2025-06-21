@@ -9,6 +9,7 @@ This document covers the advanced routing features implemented in this demo proj
 **Location:** `app/dashboard/`
 
 **Files:**
+
 - `app/dashboard/layout.tsx` - Main layout with parallel route slots
 - `app/dashboard/(overview)/page.tsx` - Default dashboard page (route group)
 - `app/dashboard/@analytics/page.tsx` - Analytics parallel route
@@ -16,6 +17,7 @@ This document covers the advanced routing features implemented in this demo proj
 - `app/dashboard/(settings)/settings/page.tsx` - Settings page (route group)
 
 **Key Concepts:**
+
 - **Parallel Routes (`@folder`)**: Allow rendering multiple pages simultaneously in the same layout
 - **Route Groups (`(folder)`)**: Organize routes without affecting URL structure
 - **Independent Loading**: Each parallel route can have its own loading states and error boundaries
@@ -46,6 +48,7 @@ export default function DashboardLayout({
 ```
 
 **Benefits:**
+
 - Better performance through independent loading
 - Improved user experience with granular loading states
 - Cleaner code organization
@@ -56,11 +59,13 @@ export default function DashboardLayout({
 **Location:** `app/docs/[[...slug]]/page.tsx`
 
 **Key Concepts:**
+
 - **Double Brackets (`[[...slug]]`)**: Makes catch-all routes optional
 - **Flexible URL Matching**: Handles both `/docs` and `/docs/any/nested/path`
 - **Dynamic Content**: Renders different content based on URL segments
 
 **Route Matching Examples:**
+
 - `/docs` → `slug` is `undefined`
 - `/docs/getting-started` → `slug` is `['getting-started']`
 - `/docs/api/authentication` → `slug` is `['api', 'authentication']`
@@ -85,6 +90,7 @@ export default function DocsPage({
 ```
 
 **Use Cases:**
+
 - Documentation sites
 - Blog systems
 - Content management systems
@@ -95,11 +101,13 @@ export default function DocsPage({
 **Location:** `app/products/(.)modal/[id]/page.tsx`
 
 **Key Concepts:**
+
 - **Route Interception (`(.)`)**: Intercepts navigation to show content in current layout
 - **Modal Patterns**: Perfect for modal overlays without losing context
 - **Conditional Rendering**: Different behavior for navigation vs. direct access
 
 **Interception Patterns:**
+
 - `(.)` - Same level
 - `(..)` - One level up
 - `(..)(..)` - Two levels up
@@ -121,6 +129,7 @@ export default function ProductModalPage({ params }: { params: { id: string } })
 ```
 
 **Benefits:**
+
 - Improved UX with modal interactions
 - Maintains navigation context
 - SEO-friendly (direct URLs still work)
@@ -129,17 +138,20 @@ export default function ProductModalPage({ params }: { params: { id: string } })
 ## 🎯 Testing the Features
 
 ### Dashboard (Parallel Routes + Route Groups)
+
 1. Visit `/dashboard` to see parallel routes in action
 2. Notice how analytics and user sections load independently
 3. Visit `/dashboard/settings` to see route groups (URL doesn't include `(settings)`)
 
 ### Documentation (Optional Catch-All)
+
 1. Visit `/docs` for the index page
 2. Try `/docs/getting-started` for single segment
 3. Try `/docs/api/authentication` for nested segments
 4. Try `/docs/guides/routing/advanced` for deep nesting
 
 ### Product Modal (Intercepting Routes)
+
 1. Go to `/products`
 2. Click "Modal View" to see intercepted route
 3. Click "Full Page" or refresh to see normal route
@@ -173,12 +185,14 @@ app/
 ```
 
 ### Performance Considerations
+
 - **Parallel Routes**: Enable independent loading and error boundaries
 - **Route Groups**: Organize code without URL overhead
 - **Optional Catch-All**: Flexible routing with single file
 - **Intercepting Routes**: Maintain context while providing modal UX
 
 ### Best Practices
+
 1. **Use Suspense**: Wrap parallel routes with Suspense for better loading UX
 2. **Error Boundaries**: Implement error.tsx for each parallel route
 3. **Loading States**: Create loading.tsx for better perceived performance
